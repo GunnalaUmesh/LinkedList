@@ -1,0 +1,63 @@
+import java.util.*;
+class LL{
+    Node head;
+    int size;
+    public LL(){
+        this.size=0;
+    }
+    public static class Node{
+        int data;
+        Node next;
+        public Node(int data){
+            this.data = data;
+        }
+    }
+    public void insertFirst(int data){
+        Node n = new Node(data);
+        if(head == null){
+            head = n;
+        }
+        else{
+            n.next = head;
+            head = n;
+            size++;
+        }
+    }
+    public void insertLast(int data){
+        Node node = new Node(data);
+        if(head == null){
+            head = node;
+        }
+        else{
+            node = head;
+            while(node.next != null){
+                node = node.next;
+            }
+            node.next = new Node(data);
+            size++;
+        }
+    }
+    public void clearAll(){
+        this.head = null;
+        this.size = 0;
+    }
+    public void deleteFirst(){
+        head = head.next;
+        size--;
+    }
+    public void deleteLast(){
+        Node node = head;
+        while(node.next!=null){
+            node = node.next;
+        }
+        node = null;
+        size--;
+    }
+    public void display(){
+        Node node = head;
+        while(node!=null){
+            System.out.println(node.data);
+            node = node.next;
+        }
+    }
+}
