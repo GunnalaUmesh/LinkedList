@@ -1,63 +1,45 @@
 import java.util.*;
-class LL{
-    Node head;
-    int size;
-    public LL(){
-        this.size=0;
+class Stack{
+    int[] data;
+    protected static final int def_size = 100000;
+    int top = -1;
+    public Stack(){
+        this(def_size);
     }
-    public static class Node{
-        int data;
-        Node next;
-        public Node(int data){
-            this.data = data;
-        }
+    public Stack(int size){
+        this.data = new int[size];
     }
-    public void insertFirst(int data){
-        Node n = new Node(data);
-        if(head == null){
-            head = n;
+    public boolean push(int value){
+        if(top >= data.length){
+            System.out.println("Stack is Full!!");
+            return false;
         }
         else{
-            n.next = head;
-            head = n;
-            size++;
+            top++;
+            data[top] = value;
+            System.out.println("pushed element-> "+data[top]);
+            return true;
         }
     }
-    public void insertLast(int data){
-        Node node = new Node(data);
-        if(head == null){
-            head = node;
+    public boolean pop(){
+        if(top == -1){
+            System.out.println("operation pop cannot be done for empty Stack!!");
+            return false;
         }
         else{
-            node = head;
-            while(node.next != null){
-                node = node.next;
-            }
-            node.next = new Node(data);
-            size++;
+            int rem = data[top];
+            top--;
+            System.out.println("popped element-> "+rem);
+            return true;
         }
     }
-    public void clearAll(){
-        this.head = null;
-        this.size = 0;
-    }
-    public void deleteFirst(){
-        head = head.next;
-        size--;
-    }
-    public void deleteLast(){
-        Node node = head;
-        while(node.next!=null){
-            node = node.next;
+    public void peek(){
+        if(top == -1){
+            System.out.println("operation peek cannot be done for empty Stack!!");
         }
-        node = null;
-        size--;
-    }
-    public void display(){
-        Node node = head;
-        while(node!=null){
-            System.out.println(node.data);
-            node = node.next;
+        else{
+            int rem = data[top];
+            System.out.println("peek element in stack-> "+rem);
         }
     }
 }
